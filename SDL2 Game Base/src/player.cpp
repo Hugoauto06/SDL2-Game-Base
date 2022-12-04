@@ -10,8 +10,8 @@ Player::Player(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture*
 /* Methods */
 void Player::Update()
 {
-	short hsp = (-window.left) + window.right;
-	short vsp = (-window.up) + window.down;
+	short hsp = ((-window.left) + window.right) * PLAYER_MOVESPEED;
+	short vsp = ((-window.up) + window.down) * PLAYER_MOVESPEED;
 
 	x += hsp;
 	y += vsp;
