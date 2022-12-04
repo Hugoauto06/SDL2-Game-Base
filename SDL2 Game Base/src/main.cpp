@@ -1,8 +1,9 @@
 #include "../include/main.h"
+using namespace std;
 
 extern RenderWindow window	= RenderWindow("Game Tittle", SCREEN_WIDTH, SCREEN_HEIGHT);
-SDL_Texture* textureP		= window.LoadTexture("../assets/spr_player.png");
-Player player				= Player(32, 32, 64, 64, textureP);
+SDL_Texture* textureP		= window.LoadTexture("assets/images/spr_player.png");
+Player player				= Player(32, 128, 64, 64, textureP);
 bool done					= false;
 
 /* Methods */
@@ -12,16 +13,20 @@ void InitializeSDL()
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 }
 
+void UpdateDelegate()
+{
+	DoInput();
+	player.Update();
+}
+
 void DrawDelegate()
 {
+	window.RenderEntity(player, 32, 32);
 	window.Display();
 	window.Clear();
 }
 
-void UpdateDelegate()
-{
-	DoInput();
-}
+
 
 /* Cap Frame Rate */
 static void capFrameRate(long* then, float* remainder);

@@ -51,26 +51,6 @@ SDL_Rect Entity::GetRect()
 	return rect;
 }
 
-int Entity::GetX()
-{
-	return x;
-}
-
-int Entity::GetY()
-{
-	return y;
-}
-
-void Entity::SetX(int pX)
-{
-	x = pX;
-}
-
-void Entity::SetY(int pY)
-{
-	y = pY;
-}
-
 void Entity::SetRotation(double pRotation)
 {
 	rotation = pRotation;

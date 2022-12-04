@@ -50,19 +50,19 @@ void RenderWindow::RenderEntity(Entity& pEntity)
 	src.h = pEntity.GetRect().h;
 
 	SDL_Rect dst;
-	dst.x = pEntity.GetX();
-	dst.y = pEntity.GetY();
+	dst.x = pEntity.x;
+	dst.y = pEntity.y;
 	dst.w = pEntity.GetRect().w;
 	dst.h = pEntity.GetRect().h;
 
 	SDL_RenderCopyEx(renderer, pEntity.GetTexture(), &src, &dst, pEntity.GetRotation(), NULL, SDL_FLIP_NONE);
 }
 
-void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH)
+void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH) // Animated Entity
 {
 	SDL_Rect dst;
-	dst.x = pEntity.GetX();
-	dst.y = pEntity.GetY();
+	dst.x = pEntity.x;
+	dst.y = pEntity.y;
 	dst.w = pEntity.GetRect().w;
 	dst.h = pEntity.GetRect().h;
 
