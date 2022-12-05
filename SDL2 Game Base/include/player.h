@@ -1,6 +1,8 @@
 #pragma once
+#include <SDL.h>
 #include "entity.h"
 #include "renderWindow.h"
+#include "gameFunctions.h"
 
 class Player : public Entity
 {

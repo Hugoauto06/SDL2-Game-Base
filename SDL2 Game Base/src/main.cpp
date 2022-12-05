@@ -4,9 +4,11 @@ using namespace std;
 extern RenderWindow window	= RenderWindow("Game Tittle", SCREEN_WIDTH, SCREEN_HEIGHT);
 Camera camera				= Camera(0, 0, 640, 480);
 SDL_Texture* textureP		= window.LoadTexture("assets/images/spr_player.png");
+SDL_Texture* BGTEX			= window.LoadTexture("assets/images/bg.png");
 Player player				= Player(32, 128, 64, 64, textureP);
 Entity ent					= Entity(256, 256, 64, 64, textureP);
 bool done					= false;
+
 
 /* Methods */
 void InitializeSDL()
@@ -20,12 +22,19 @@ void UpdateDelegate()
 	DoInput();
 	player.Update();
 	camera.FollowPoint(player.x, player.y);
+
+	//cout << player.GetRect().x << "\n" << ent.GetRect().x;
+	if (Collision(player.GetRect(), ent.GetRect()))
+	{
+		cout << "hey";
+	}
 }
 
 void DrawDelegate()
 {
-	window.RenderEntity(player, 32, 32, camera.CameraRect);
+	window.Blit(BGTEX, 0, 0, camera.CameraRect);
 	window.RenderEntity(ent, 32, 32, camera.CameraRect);
+	window.RenderEntity(player, 32, 32, camera.CameraRect);
 	window.Display();
 	window.Clear();
 }

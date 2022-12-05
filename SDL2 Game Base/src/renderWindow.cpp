@@ -52,7 +52,7 @@ void RenderWindow::RenderEntity(Entity& pEntity, SDL_Rect pCameraRect)
 
 void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH, SDL_Rect pCameraRect) // Animated Entity
 {
-	SDL_Rect dst = { pEntity.x-32 - pCameraRect.x, pEntity.y-32 - pCameraRect.y, pEntity.GetRect().w, pEntity.GetRect().h};
+	SDL_Rect dst = { pEntity.x - (pW) - pCameraRect.x, pEntity.y - (pH) - pCameraRect.y, pEntity.GetRect().w, pEntity.GetRect().h};
 
 	SDL_Rect _rect;
 	_rect.x = pEntity.GetXCurrent();

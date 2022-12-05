@@ -16,6 +16,8 @@ void Player::Update()
 	x += hsp;
 	y += vsp;
 
+	x = SDL_clamp(x, 0, ROOM_WIDTH);
+	y = SDL_clamp(y, 0, ROOM_HEIGHT);
 	if (hsp != 0)
 	{
 		if (hsp > 0)
@@ -40,7 +42,8 @@ void Player::Update()
 	rect.x = x-32; // Center Collision Mask (offset)
 	rect.y = y-32; // Center Collision Mask (offset)
 	/*
-		The Player Size is 64 x 64
+		The Player Size is 64 x 64, so to center the image/collision-mask
+
 	*/
 }
 
