@@ -27,21 +27,17 @@ SDL_Texture* RenderWindow::LoadTexture(const char* pFilepath)
 	return _texture;
 }
 
-void RenderWindow::Blit(SDL_Texture* pTexture, int pX, int pY)
+void RenderWindow::Blit(SDL_Texture* pTexture, int pX, int pY, SDL_Rect pCameraRect)
 {
 	SDL_Point _size;
 	SDL_QueryTexture(pTexture, NULL, NULL, &_size.x, &_size.y);
 
-	SDL_Rect _dst;
-	_dst.x = pX;
-	_dst.y = pY;
-	_dst.w = _size.x;
-	_dst.h = _size.y;
+	SDL_Rect _dst = { pX - pCameraRect.x, pY - pCameraRect.y, _size.x, _size.y};
 
 	SDL_RenderCopy(renderer, pTexture, NULL, &_dst);
 }
 
-void RenderWindow::RenderEntity(Entity& pEntity)
+void RenderWindow::RenderEntity(Entity& pEntity, SDL_Rect pCameraRect)
 {
 	SDL_Rect src;
 	src.x = 0;
@@ -49,22 +45,14 @@ void RenderWindow::RenderEntity(Entity& pEntity)
 	src.w = pEntity.GetRect().w;
 	src.h = pEntity.GetRect().h;
 
-	SDL_Rect dst;
-	dst.x = pEntity.x;
-	dst.y = pEntity.y;
-	dst.w = pEntity.GetRect().w;
-	dst.h = pEntity.GetRect().h;
+	SDL_Rect dst = { pEntity.x - pCameraRect.x, pEntity.y - pCameraRect.y, pEntity.GetRect().w, pEntity.GetRect().h };
 
-	SDL_RenderCopyEx(renderer, pEntity.GetTexture(), &src, &dst, pEntity.GetRotation(), NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, pEntity.GetTexture(), &src, &dst, pEntity.GetRotation(), NULL, pEntity.flip);
 }
 
-void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH) // Animated Entity
+void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH, SDL_Rect pCameraRect) // Animated Entity
 {
-	SDL_Rect dst;
-	dst.x = pEntity.x;
-	dst.y = pEntity.y;
-	dst.w = pEntity.GetRect().w;
-	dst.h = pEntity.GetRect().h;
+	SDL_Rect dst = { pEntity.x-32 - pCameraRect.x, pEntity.y-32 - pCameraRect.y, pEntity.GetRect().w, pEntity.GetRect().h};
 
 	SDL_Rect _rect;
 	_rect.x = pEntity.GetXCurrent();
@@ -84,7 +72,7 @@ void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH) // Animated Ent
 		}
 	}
 
-	SDL_RenderCopyEx(renderer, pEntity.GetTexture(), &_rect, &dst, pEntity.GetRotation(), NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, pEntity.GetTexture(), &_rect, &dst, pEntity.GetRotation(), NULL, pEntity.flip);
 }
 
 void RenderWindow::Display()

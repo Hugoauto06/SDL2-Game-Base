@@ -6,6 +6,7 @@
 
 #include "entity.h"
 #include "defs.h"
+#include "camera.h"
 
 class RenderWindow
 {
@@ -13,9 +14,9 @@ public:
 	RenderWindow(const char* pTitle, int pW, int pH);
 
 	SDL_Texture* LoadTexture(const char* pFilepath);
-	void Blit(SDL_Texture* pTexture, int pX, int pY);
-	void RenderEntity(Entity& pEntity);
-	void RenderEntity(Entity& pEntity, int pW, int pH);
+	void Blit(SDL_Texture* pTexture, int pX, int pY, SDL_Rect pCameraRect);
+	void RenderEntity(Entity& pEntity, SDL_Rect pCameraRect);
+	void RenderEntity(Entity& pEntity, int pW, int pH, SDL_Rect pCameraRect);
 
 	void Display();
 	void Clear();

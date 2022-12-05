@@ -2,8 +2,10 @@
 using namespace std;
 
 extern RenderWindow window	= RenderWindow("Game Tittle", SCREEN_WIDTH, SCREEN_HEIGHT);
+Camera camera				= Camera(0, 0, 640, 480);
 SDL_Texture* textureP		= window.LoadTexture("assets/images/spr_player.png");
 Player player				= Player(32, 128, 64, 64, textureP);
+Entity ent					= Entity(256, 256, 64, 64, textureP);
 bool done					= false;
 
 /* Methods */
@@ -17,15 +19,16 @@ void UpdateDelegate()
 {
 	DoInput();
 	player.Update();
+	camera.FollowPoint(player.x, player.y);
 }
 
 void DrawDelegate()
 {
-	window.RenderEntity(player, 32, 32);
+	window.RenderEntity(player, 32, 32, camera.CameraRect);
+	window.RenderEntity(ent, 32, 32, camera.CameraRect);
 	window.Display();
 	window.Clear();
 }
-
 
 
 /* Cap Frame Rate */

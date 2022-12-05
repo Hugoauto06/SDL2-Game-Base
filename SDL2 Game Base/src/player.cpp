@@ -16,6 +16,18 @@ void Player::Update()
 	x += hsp;
 	y += vsp;
 
+	if (hsp != 0)
+	{
+		if (hsp > 0)
+		{
+			flip = SDL_FLIP_NONE;
+		}
+		if (hsp < 0)
+		{
+			flip = SDL_FLIP_HORIZONTAL;
+		}
+	}
+
 	if ((hsp != 0 && vsp != 0) || (hsp != 0 || vsp != 0))
 	{
 		animated = true;
@@ -25,8 +37,11 @@ void Player::Update()
 		animated = false;
 	}
 
-	rect.x = x;
-	rect.y = y;
+	rect.x = x-32; // Center Collision Mask (offset)
+	rect.y = y-32; // Center Collision Mask (offset)
+	/*
+		The Player Size is 64 x 64
+	*/
 }
 
 /* Propities */

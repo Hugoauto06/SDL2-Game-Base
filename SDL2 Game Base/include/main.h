@@ -7,5 +7,6 @@
 #include "entity.h"
 #include "player.h"
 #include "inputs.h"
+#include "camera.h"
 
 extern void DoInput(void);

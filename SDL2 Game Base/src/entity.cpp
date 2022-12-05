@@ -14,6 +14,7 @@ Entity::Entity(int pX, int pY, SDL_Texture* pTexture)
 
 	frame		= 0;
 	animated	= false;
+	flip		= SDL_FLIP_NONE;
 }
 
 Entity::Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture* pTexture)
@@ -35,6 +36,7 @@ Entity::Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture*
 	frame			= 0;
 	maxFrames		= floor(_size.x / pSpriteWidth);
 	animated		= false;
+	flip			= SDL_FLIP_NONE;
 }
 
 /* Methods */

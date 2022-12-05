@@ -12,6 +12,7 @@ public:
 	SDL_Texture* GetTexture();	
 	SDL_Rect GetCurrentFrame();
 	SDL_Rect GetRect();
+	SDL_RendererFlip flip;
 	void SetRotation(double pRotation);
 	void SetFrame(short pFrame);
 	int GetXCurrent();
@@ -20,6 +21,7 @@ public:
 	short GetFrame();
 	bool animated;
 	int x, y;
+
 private:
 	short frame;				// Image Index
 	short maxFrames;			// Total Image Indexes (Only used on second Constructor)
