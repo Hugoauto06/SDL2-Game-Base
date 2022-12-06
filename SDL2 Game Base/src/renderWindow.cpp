@@ -5,7 +5,7 @@ RenderWindow::RenderWindow(const char* pTitle, int pW, int pH)
 {
 	window = SDL_CreateWindow(
 		pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		pW, pH, SDL_WINDOW_RESIZABLE
+		pW, pH, SDL_WINDOW_MOUSE_FOCUS	
 	);
 
 	renderer = SDL_CreateRenderer(
@@ -37,22 +37,30 @@ void RenderWindow::Blit(SDL_Texture* pTexture, int pX, int pY, SDL_Rect pCameraR
 	SDL_RenderCopy(renderer, pTexture, NULL, &_dst);
 }
 
+void RenderWindow::RenderRectangle(SDL_Rect pRect, SDL_Rect pCameraRect)
+{
+	SDL_Rect _rect = {pRect.x - pCameraRect.x, pRect.y - pCameraRect.y, pRect.w, pRect.y};
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &_rect);
+}
+
 void RenderWindow::RenderEntity(Entity& pEntity, SDL_Rect pCameraRect)
 {
 	SDL_Rect src;
 	src.x = 0;
 	src.y = 0;
-	src.w = pEntity.GetRect().w;
-	src.h = pEntity.GetRect().h;
+	src.w = pEntity.rect.w;
+	src.h = pEntity.rect.h;
 
-	SDL_Rect dst = { pEntity.x - pCameraRect.x, pEntity.y - pCameraRect.y, pEntity.GetRect().w, pEntity.GetRect().h };
+	SDL_Rect dst = { pEntity.x - pCameraRect.x, pEntity.y - pCameraRect.y, pEntity.rect.w, pEntity.rect.h };
 
 	SDL_RenderCopyEx(renderer, pEntity.GetTexture(), &src, &dst, pEntity.GetRotation(), NULL, pEntity.flip);
 }
 
 void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH, SDL_Rect pCameraRect) // Animated Entity
 {
-	SDL_Rect dst = { pEntity.x - (pW) - pCameraRect.x, pEntity.y - (pH) - pCameraRect.y, pEntity.GetRect().w, pEntity.GetRect().h};
+	SDL_Rect dst = { pEntity.x - (pW) - pCameraRect.x, pEntity.y - (pH) - pCameraRect.y, pEntity.rect.w, pEntity.rect.h};
 
 	SDL_Rect _rect;
 	_rect.x = pEntity.GetXCurrent();

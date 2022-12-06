@@ -11,7 +11,6 @@ public:
 
 	SDL_Texture* GetTexture();	
 	SDL_Rect GetCurrentFrame();
-	SDL_Rect GetRect();
 	SDL_RendererFlip flip;
 	void SetRotation(double pRotation);
 	void SetFrame(short pFrame);
@@ -21,12 +20,12 @@ public:
 	short GetFrame();
 	bool animated;
 	int x, y;
+	SDL_Rect rect;				// This Rectangle Is for collision detection
 
 private:
 	short frame;				// Image Index
 	short maxFrames;			// Total Image Indexes (Only used on second Constructor)
 	double rotation;
-	SDL_Rect rect;				// This Rectangle Is for collision detection
 	SDL_Rect currentFrame;
 	SDL_Texture* texture;
 };

@@ -64,7 +64,11 @@ void DoInput(void)
 			break;
 
 		case SDL_MOUSEBUTTONDOWN:
+			int xMouse, yMouse;
+			SDL_GetMouseState(&xMouse, &yMouse);
+
 			window.click = true;
+
 			break;
 
 		case SDL_QUIT:

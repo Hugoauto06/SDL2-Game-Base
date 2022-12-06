@@ -7,8 +7,8 @@ Entity::Entity(int pX, int pY, SDL_Texture* pTexture)
 	SDL_Point _size;
 	SDL_QueryTexture(pTexture, NULL, NULL, &_size.x, &_size.y);
 
-	rect.x		= pX;
-	rect.y		= pY;
+	rect.x		= pX-64;
+	rect.y		= pY-64;
 	rect.w		= _size.x;
 	rect.h		= _size.y;
 
@@ -23,8 +23,8 @@ Entity::Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture*
 	SDL_Point _size;
 	SDL_QueryTexture(pTexture, NULL, NULL, &_size.x, &_size.y);
 
-	rect.x			= pX;
-	rect.y			= pY;
+	rect.x			= pX-pSpriteWidth;
+	rect.y			= pY-pSpriteHeight;
 	rect.w			= pSpriteWidth;
 	rect.h			= pSpriteHeight;
 
@@ -46,11 +46,6 @@ Entity::Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture*
 SDL_Texture* Entity::GetTexture()
 {
 	return texture;
-}
-
-SDL_Rect Entity::GetRect()
-{
-	return rect;
 }
 
 void Entity::SetRotation(double pRotation)

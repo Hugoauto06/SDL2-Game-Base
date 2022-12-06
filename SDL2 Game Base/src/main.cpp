@@ -23,8 +23,7 @@ void UpdateDelegate()
 	player.Update();
 	camera.FollowPoint(player.x, player.y);
 
-	//cout << player.GetRect().x << "\n" << ent.GetRect().x;
-	if (Collision(player.GetRect(), ent.GetRect()))
+	if (Collision(player.rect, ent.rect))
 	{
 		cout << "hey";
 	}
@@ -35,6 +34,8 @@ void DrawDelegate()
 	window.Blit(BGTEX, 0, 0, camera.CameraRect);
 	window.RenderEntity(ent, 32, 32, camera.CameraRect);
 	window.RenderEntity(player, 32, 32, camera.CameraRect);
+	//window.RenderRectangle(player.rect, camera.CameraRect);
+	//window.RenderRectangle(ent.rect, camera.CameraRect);
 	window.Display();
 	window.Clear();
 }
@@ -56,7 +57,7 @@ static void capFrameRate(long* then, float* remainder)
 	wait -= frameTime;
 
 	if (wait < 1)
-	{
+ 	{
 		wait = 1;
 	}
 
