@@ -11,7 +11,7 @@ public:
 	Entity(int pX, int pY, SDL_Texture* pTexture);
 	Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture* pTexture);
 
-
+	int DistanceToPoint(int pX, int pY);
 	SDL_Texture* GetTexture();
 	SDL_Rect GetCurrentFrame();
 	SDL_RendererFlip flip;

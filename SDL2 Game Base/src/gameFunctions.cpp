@@ -1,8 +1,10 @@
 #include "../include/gameFunctions.h"
 /*
-	I was trying to make a function Global like
-	the MathF Functions in the whole program, so
-	i dont have to make a class and instantiate it
+	This are Global Fuctions, kinda like the
+	Math Functions, you can call them everywhere
+	by including the "gameFunctions.h" header.
+
+	Use them wisely :D
 */
 
 bool Collision(SDL_Rect rectA, SDL_Rect rectB)

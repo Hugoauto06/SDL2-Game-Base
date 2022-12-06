@@ -63,6 +63,37 @@ void Entity::GotoPoint(int pX, int pY, int pSpeed)
 	rect.y = y - 64;
 }
 
+int Entity::DistanceToPoint(int pX, int pY)
+{
+	int _x, _y;
+	if (x < pX)
+	{
+		_x = x - pX;
+	}else if (x > pX)
+	{
+		_x = pX - x;
+	}
+	else
+	{
+		_x = 0;
+	}
+
+	if (y < pY)
+	{
+		_y = y - pY;
+	}else if (y > pY)
+	{
+		_y = pY - y;
+	}
+	else
+	{
+		_y = 0;
+	}
+
+	int _distance = abs(_x) + abs(_y);
+	return _distance;
+}
+
 /* Propities */
 SDL_Texture* Entity::GetTexture()
 {
@@ -99,3 +130,5 @@ int Entity::GetXCurrent()
 {
 	return currentFrame.x;
 }
+
+

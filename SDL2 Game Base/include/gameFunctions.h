@@ -4,4 +4,5 @@
 #ifndef MY_FOO_HEADER_
 #define MY_FOO_HEADER_
 bool Collision(SDL_Rect rectA, SDL_Rect rectB);
+int DistanceToPoint(int pX, int pY);
 #endif

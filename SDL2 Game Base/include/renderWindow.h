@@ -12,7 +12,6 @@ class RenderWindow
 {
 public:
 	RenderWindow(const char* pTitle, int pW, int pH);
-
 	SDL_Texture* LoadTexture(const char* pFilepath);
 	void Blit(SDL_Texture* pTexture, int pX, int pY, SDL_Rect pCameraRect);
 	void RenderRectangle(SDL_Rect pRect, SDL_Rect pCameraRect);

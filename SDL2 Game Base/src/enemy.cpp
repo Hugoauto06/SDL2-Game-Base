@@ -8,5 +8,8 @@ Enemy::Enemy(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture* p
 
 void Enemy::Update(Player& pPlayer)
 {
-	GotoPoint(pPlayer.x, pPlayer.y, ENEMY::SPEED);
+	if (DistanceToPoint(pPlayer.x, pPlayer.y) < 512)
+	{
+		GotoPoint(pPlayer.x, pPlayer.y, ENEMY::SPEED);
+	}
 }
