@@ -2,11 +2,12 @@
 using namespace std;
 
 extern RenderWindow window	= RenderWindow("Game Tittle", SCREEN_WIDTH, SCREEN_HEIGHT);
-Camera camera				= Camera(0, 0, 640, 480);
+Camera camera				= Camera(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 SDL_Texture* textureP		= window.LoadTexture("assets/images/spr_player.png");
+SDL_Texture* textureE		= window.LoadTexture("assets/images/spr_enemy.png");
 SDL_Texture* BGTEX			= window.LoadTexture("assets/images/bg.png");
 Player player				= Player(32, 128, 64, 64, textureP);
-Entity ent					= Entity(256, 256, 64, 64, textureP);
+Enemy ent					= Enemy(256, 256, 64, 64, textureE);
 bool done					= false;
 
 
@@ -22,6 +23,7 @@ void UpdateDelegate()
 	DoInput();
 	player.Update();
 	camera.FollowPoint(player.x, player.y);
+	ent.Update(player);
 
 	if (Collision(player.rect, ent.rect))
 	{
@@ -34,8 +36,6 @@ void DrawDelegate()
 	window.Blit(BGTEX, 0, 0, camera.CameraRect);
 	window.RenderEntity(ent, 32, 32, camera.CameraRect);
 	window.RenderEntity(player, 32, 32, camera.CameraRect);
-	//window.RenderRectangle(player.rect, camera.CameraRect);
-	//window.RenderRectangle(ent.rect, camera.CameraRect);
 	window.Display();
 	window.Clear();
 }

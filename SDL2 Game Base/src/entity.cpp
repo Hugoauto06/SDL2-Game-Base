@@ -40,7 +40,28 @@ Entity::Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture*
 }
 
 /* Methods */
+void Entity::GotoPoint(int pX, int pY, int pSpeed)
+{
+	if (x < pX)
+	{
+		x += pSpeed;
+	}
+	if (x > pX)
+	{
+		x -= pSpeed;
+	}
+	if (y < pY)
+	{
+		y += pSpeed;
+	}
+	if (y > pY)
+	{
+		y -= pSpeed;
+	}
 
+	rect.x = x - 64;
+	rect.y = y - 64;
+}
 
 /* Propities */
 SDL_Texture* Entity::GetTexture()

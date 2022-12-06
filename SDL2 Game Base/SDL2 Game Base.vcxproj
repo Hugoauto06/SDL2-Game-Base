@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\gameFunctions.cpp" />
     <ClCompile Include="src\inputs.cpp" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="include\camera.h" />
     <ClInclude Include="include\defs.h" />
+    <ClInclude Include="include\enemy.h" />
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\gameFunctions.h" />
     <ClInclude Include="include\inputs.h" />

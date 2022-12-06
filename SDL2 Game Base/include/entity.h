@@ -3,15 +3,19 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "defs.h"
+
 class Entity
 {
 public:
 	Entity(int pX, int pY, SDL_Texture* pTexture);
 	Entity(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture* pTexture);
 
-	SDL_Texture* GetTexture();	
+
+	SDL_Texture* GetTexture();
 	SDL_Rect GetCurrentFrame();
 	SDL_RendererFlip flip;
+	void GotoPoint(int pX, int pY, int pSpeed);
 	void SetRotation(double pRotation);
 	void SetFrame(short pFrame);
 	int GetXCurrent();
