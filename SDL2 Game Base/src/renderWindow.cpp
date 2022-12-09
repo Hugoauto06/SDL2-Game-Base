@@ -98,3 +98,15 @@ void RenderWindow::End()
 {
 	SDL_DestroyWindow(window);
 }
+
+void RenderWindow::SaveScreenshot()
+{
+	const Uint32 format = SDL_PIXELFORMAT_ARGB8888;
+	const int width = 640;
+	const int height = 400;
+
+	SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, format);
+	SDL_RenderReadPixels(renderer, NULL, format, surface->pixels, surface->pitch);
+	SDL_SaveBMP(surface, "screenshot.bmp");
+	SDL_FreeSurface(surface);
+}

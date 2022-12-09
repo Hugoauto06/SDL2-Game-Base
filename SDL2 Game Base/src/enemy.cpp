@@ -12,4 +12,10 @@ void Enemy::Update(Player& pPlayer)
 	{
 		GotoPoint(pPlayer.x, pPlayer.y, ENEMY::SPEED);
 	}
+
+	if (Collision(pPlayer.rect, rect))
+	{
+		//
+		pPlayer.health -= 25;
+	}
 }

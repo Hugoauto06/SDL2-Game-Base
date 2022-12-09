@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 
 #include "player.h"
+#include "renderWindow.h"
 
 class Enemy : public Entity
 {
@@ -16,3 +17,4 @@ private:
 	SDL_Rect currentFrame;
 	SDL_Texture* texture;
 };
+

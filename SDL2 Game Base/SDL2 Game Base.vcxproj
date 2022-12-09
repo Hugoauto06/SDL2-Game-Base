@@ -40,6 +40,8 @@
     <ClInclude Include="include\renderWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\images\bg.png" />
+    <Image Include="assets\images\spr_enemy.png" />
     <Image Include="assets\spr_player.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

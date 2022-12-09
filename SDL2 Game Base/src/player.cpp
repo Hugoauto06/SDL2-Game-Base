@@ -39,11 +39,17 @@ void Player::Update()
 		animated = false;
 	}
 
+	if (health <= 0)
+	{
+		//
+		//std::cout << "died";
+	}
+
 	rect.x = x-32; // Center Collision Mask (offset)
 	rect.y = y-32; // Center Collision Mask (offset)
+	
 	/*
 		The Player Size is 64 x 64, so to center the image/collision-mask
-
 	*/
 }
 

@@ -8,8 +8,8 @@ SDL_Texture* textureE		= window.LoadTexture("assets/images/spr_enemy.png");
 SDL_Texture* BGTEX			= window.LoadTexture("assets/images/bg.png");
 Player player				= Player(32, 128, 64, 64, textureP);
 Enemy ent					= Enemy(256, 256, 64, 64, textureE);
+Enemy ent2					= Enemy(1024, 1024, 64, 64, textureE);
 bool done					= false;
-
 
 /* Methods */
 void InitializeSDL()
@@ -22,20 +22,18 @@ void UpdateDelegate()
 {
 	DoInput();
 	player.Update();
-	camera.FollowPoint(player.x, player.y);
 	ent.Update(player);
-
-	if (Collision(player.rect, ent.rect))
-	{
-		cout << "hey";
-	}
+	ent2.Update(player);
+	camera.FollowPoint(player.x, player.y);
 }
 
 void DrawDelegate()
 {
 	window.Blit(BGTEX, 0, 0, camera.CameraRect);
 	window.RenderEntity(ent, 32, 32, camera.CameraRect);
+	window.RenderEntity(ent2, 32, 32, camera.CameraRect);
 	window.RenderEntity(player, 32, 32, camera.CameraRect);
+
 	window.Display();
 	window.Clear();
 }
@@ -67,13 +65,10 @@ static void capFrameRate(long* then, float* remainder)
 
 	*then = SDL_GetTicks();
 }
-
-
 /* Main App */
 int main(int argc, char* args[])
 {
 	InitializeSDL();
-	player.animated = true;
 	 
 	long then;
 	float remainder;

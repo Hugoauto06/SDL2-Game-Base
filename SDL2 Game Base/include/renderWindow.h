@@ -18,6 +18,8 @@ public:
 	void RenderEntity(Entity& pEntity, SDL_Rect pCameraRect);
 	void RenderEntity(Entity& pEntity, int pW, int pH, SDL_Rect pCameraRect);
 
+	void SaveScreenshot();
+
 	void Display();
 	void Clear();
 	void End();

@@ -73,5 +73,11 @@
     <Image Include="assets\spr_player.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\images\bg.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\spr_enemy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

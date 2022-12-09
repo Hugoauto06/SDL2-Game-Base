@@ -9,6 +9,8 @@ class Player : public Entity
 public:
 	Player(int pX, int pY, int pSpriteWidth, int pSpriteHeight, SDL_Texture* pTexture);
 	void Update();
+
+	int health = 100;
 private:
 	short frame;				// Image Index
 	short maxFrames;			// Total Image Indexes (Only used on second Constructor)
