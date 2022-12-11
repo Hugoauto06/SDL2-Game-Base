@@ -11,6 +11,9 @@ Enemy ent					= Enemy(256, 256, 64, 64, textureE);
 Enemy ent2					= Enemy(1024, 1024, 64, 64, textureE);
 bool done					= false;
 
+//vector<Entity> entities;
+unordered_map<int, Entity*> emtityMap;
+
 /* Methods */
 void InitializeSDL()
 {
@@ -30,9 +33,11 @@ void UpdateDelegate()
 void DrawDelegate()
 {
 	window.Blit(BGTEX, 0, 0, camera.CameraRect);
-	window.RenderEntity(ent, 32, 32, camera.CameraRect);
-	window.RenderEntity(ent2, 32, 32, camera.CameraRect);
-	window.RenderEntity(player, 32, 32, camera.CameraRect);
+
+	for (auto& X : emtityMap)
+	{
+		window.RenderEntity(*X.second, 32, 32, camera.CameraRect);
+	}
 
 	window.Display();
 	window.Clear();
@@ -68,6 +73,10 @@ static void capFrameRate(long* then, float* remainder)
 /* Main App */
 int main(int argc, char* args[])
 {
+	emtityMap.emplace(0, &player);
+	emtityMap.emplace(1, &ent);
+	emtityMap.emplace(2, &ent2);
+
 	InitializeSDL();
 	 
 	long then;

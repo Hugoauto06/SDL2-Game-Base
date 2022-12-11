@@ -16,6 +16,7 @@ void Enemy::Update(Player& pPlayer)
 	if (Collision(pPlayer.rect, rect))
 	{
 		//
+		std::cout << pPlayer.health << std::endl;
 		pPlayer.health -= 25;
 	}
 }
