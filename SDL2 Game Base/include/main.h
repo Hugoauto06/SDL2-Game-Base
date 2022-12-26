@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include <SDL.h>
-//#include <vector>
 #include <unordered_map>
 #include <map>
+#include <thread>
 
 #include "renderWindow.h"
 #include "player.h"

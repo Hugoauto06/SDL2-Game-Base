@@ -84,7 +84,7 @@ void RenderWindow::RenderEntity(Entity& pEntity, int pW, int pH, SDL_Rect pCamer
 }
 
 void RenderWindow::Display()
-{
+{	
 	SDL_SetRenderDrawColor(renderer, 64, 68, 88, 255);
 	SDL_RenderPresent(renderer);
 }
@@ -97,6 +97,7 @@ void RenderWindow::Clear()
 void RenderWindow::End()
 {
 	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer);
 }
 
 void RenderWindow::SaveScreenshot()

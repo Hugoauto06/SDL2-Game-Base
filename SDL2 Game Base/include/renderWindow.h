@@ -30,6 +30,7 @@ public:
 	bool left;
 	bool right;
 	bool click;
+	bool exit;
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;

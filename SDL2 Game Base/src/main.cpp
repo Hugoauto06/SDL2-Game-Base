@@ -11,7 +11,6 @@ Enemy ent					= Enemy(256, 256, 64, 64, textureE);
 Enemy ent2					= Enemy(1024, 1024, 64, 64, textureE);
 bool done					= false;
 
-//vector<Entity> entities;
 unordered_map<int, Entity*> emtityMap;
 
 /* Methods */
@@ -28,6 +27,11 @@ void UpdateDelegate()
 	ent.Update(player);
 	ent2.Update(player);
 	camera.FollowPoint(player.x, player.y);
+
+	if (window.exit)
+	{
+		done = true;
+	}
 }
 
 void DrawDelegate()
@@ -70,15 +74,16 @@ static void capFrameRate(long* then, float* remainder)
 
 	*then = SDL_GetTicks();
 }
+
 /* Main App */
 int main(int argc, char* args[])
 {
+	InitializeSDL();
+
 	emtityMap.emplace(0, &player);
 	emtityMap.emplace(1, &ent);
 	emtityMap.emplace(2, &ent2);
 
-	InitializeSDL();
-	 
 	long then;
 	float remainder;
 	then = SDL_GetTicks();
@@ -86,11 +91,15 @@ int main(int argc, char* args[])
 
 	while (!done) /* Game Loop */
 	{
-		UpdateDelegate();
-		DrawDelegate();
+		thread drawThread(DrawDelegate);
 
+		UpdateDelegate();
+		drawThread.join();
 		capFrameRate(&then, &remainder);
 	}
+
 	window.End();
+	IMG_Quit();
+	SDL_Quit();
 	return 0;
 }

@@ -22,6 +22,10 @@ void DoKeyUp(SDL_KeyboardEvent* event)
 		case SDL_SCANCODE_D:
 			window.right = false;
 			break;
+
+		case SDL_SCANCODE_ESCAPE:
+			window.exit = false;
+			break;
 		}
 	}
 }
@@ -47,6 +51,10 @@ void DoKeyDown(SDL_KeyboardEvent* event)
 
 		case SDL_SCANCODE_D:
 			window.right = true;
+			break;
+
+		case SDL_SCANCODE_ESCAPE:
+			window.exit = true;
 			break;
 		}
 	}
